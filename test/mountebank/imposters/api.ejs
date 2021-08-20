@@ -1,0 +1,126 @@
+{
+  "port": 3000,
+  "protocol": "http",
+  "allowCORS":true,
+  "useCORS":true,
+  "defaultResponse":{
+    "statusCode":400,
+    "headers":{
+      "Content-Type":"application/json; charset=utf-8",
+      "Access-Control-Allow-Origin":"*",
+      "Access-Control-Allow-Methods":"POST,GET,OPTIONS",
+      "Access-Control-Allow-Headers":"GET,PUT,POST,DELETE,OPTIONS",
+      "Access-Control-Allow-Credentials":"true"
+    }
+  },
+  "stubs": [
+    {
+      "responses":[
+        {
+          "is":{
+            "statusCode":200,
+            "headers":{
+              "Content-Type":"application/json; charset=utf-8",
+              "Access-Control-Allow-Origin":"*",
+              "Access-Control-Allow-Methods":"POST,GET,OPTIONS",
+              "Access-Control-Allow-Headers":"GET,PUT,POST,DELETE,OPTIONS",
+              "Access-Control-Allow-Credentials":"true"
+            }
+          }
+        }
+      ],
+      "predicates":[
+        {
+          "and":[
+            {
+              "startsWith": {
+                "path": "/"
+              }
+            },
+            {
+              "equals": {
+                "method": "OPTIONS"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "responses":[
+        {
+          "is":{
+            "statusCode":200,
+            "body": [
+              {
+                "id": "77d92530-baf2-47b8-ae23-b0913361ee25",
+                "userID": "28f62e54-ff64-4078-ab80-2abbd2b9e463",
+                "number1": 1,
+                "number2": 2,
+                "number3": 3,
+                "number4": 4,
+                "number5": 5,
+                "number6": 6,
+                "superZahl": 1,
+                "date": "YYYY-MM-DD"
+              },
+              {
+                "id": "e29346e2-3986-458a-bf6e-57f2bf77e77d",
+                "userID": "28f62e54-ff64-4078-ab80-2abbd2b9e463",
+                "number1": 7,
+                "number2": 8,
+                "number3": 9,
+                "number4": 10,
+                "number5": 11,
+                "number6": 12,
+                "superZahl": 3,
+                "date": "YYYY-MM-DD"
+              }
+            ]
+          }
+        }
+      ],
+      "predicates":[
+        {
+          "and":[
+            {
+              "endsWith": {
+                "path": "/tipps/28f62e54-ff64-4078-ab80-2abbd2b9e463"
+              }
+            },
+            {
+              "equals": {
+                "method": "GET"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "responses":[
+        {
+          "is":{
+            "statusCode":201
+          }
+        }
+      ],
+      "predicates":[
+        {
+          "and":[
+            {
+              "endsWith": {
+                "path": "/tipps"
+              }
+            },
+            {
+              "equals": {
+                "method": "POST"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

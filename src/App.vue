@@ -1,32 +1,54 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+
+    <v-app-bar app  color="yellow lighten-2">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Lotto-Projekt</v-toolbar-title>
+
+      <v-btn @click="logout" class="ml-auto">
+        Logout
+        <v-icon
+          dark
+          right
+        >
+          mdi-logout
+        </v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <navigation :drawer=drawer></navigation>
+
+    <v-main>
+      <router-view/>
+    </v-main>
+
+    <v-footer color="yellow lighten-2">
+      <v-col cols="12" class="text-right">
+        <span class="font-weight-thin">Schulz & Schüler Projects</span>
+      </v-col>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Navigation from './components/Navigation.vue'
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: 'App',
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  components: {
+    Navigation
+  },
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+  methods: {
+    logout () {
+      this.$KEYCLOAK.logout()
+    }
+  },
+
+  data: () => ({
+    drawer: false
+  })
 }
-</style>
+</script>
