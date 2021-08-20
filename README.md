@@ -7,6 +7,8 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
+npm run mocks:auth
+npm run mocks:http
 npm run serve
 ```
 
