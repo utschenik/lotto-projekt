@@ -5,18 +5,27 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
+const BASE_URL = 'http://localhost:3000/'
+
 export default new Vuex.Store({
   state: {
-    tipp: undefined
+    tipp: undefined,
+    usersTipps: undefined
   },
   getters: {
     GET_TIPP (state) {
       return state.tipp
+    },
+    GET_USERS_TIPPS (state) {
+      return state.usersTipps
     }
   },
   mutations: {
     SET_TIPP (state, payload) {
       state.tipp = payload
+    },
+    SET_USERS_TIPPS (state, payload) {
+      state.usersTipps = payload
     }
   },
   actions: {
@@ -38,9 +47,18 @@ export default new Vuex.Store({
         superZahl: _.random(0, 9)
       }
 
-      const resp = await axios.post('http://localhost:3000/tipps', reqBody)
+      const resp = await axios.post(BASE_URL + 'tipps', reqBody)
       if (resp.status === 201) {
         commit('SET_TIPP', reqBody)
+        return true
+      } else {
+        return false
+      }
+    },
+    async FETCH_USERS_TIPPS ({ commit }, userId) {
+      const resp = await axios.get(BASE_URL + 'tipps/' + userId)
+      if (resp.status === 200) {
+        commit('SET_USERS_TIPPS', resp.data)
         return true
       } else {
         return false

@@ -20,6 +20,7 @@ keycloak.init({ onLoad: initOptions.onLoad }).then((auth) => {
     console.log('Authenticated')
 
     Vue.prototype.$KEYCLOAK = keycloak
+    Vue.prototype.$USER_ID = keycloak.tokenParsed.sub
 
     new Vue({
       router,

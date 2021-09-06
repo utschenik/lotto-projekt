@@ -5,6 +5,7 @@
     class="d-flex justify-center pa-4"
     width="50px"
     height="50px"
+    :disabled=isDisabled
     hover
     v-bind:class="{ 'number-tipp-card--active': selected }"
   >
@@ -19,7 +20,8 @@ export default {
 
   props: {
     numberTipp: String,
-    selected: Boolean
+    selected: Boolean,
+    isDisabled: Boolean
   },
 
   methods: {

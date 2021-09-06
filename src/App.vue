@@ -4,7 +4,9 @@
     <v-app-bar app  color="yellow lighten-2">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Lotto-Projekt</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to="/" style="text-decoration: none; color: inherit;">Lotto-Projekt</router-link>
+      </v-toolbar-title>
 
       <v-btn @click="logout" class="ml-auto">
         Logout

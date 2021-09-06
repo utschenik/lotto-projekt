@@ -13,6 +13,7 @@
           @emit-number-click="saveNewNumber"
           :numberTipp="name"
           :selected="value"
+          :isDisabled="sendedTipp"
         ></number-tipp>
         </v-col>
 
@@ -120,7 +121,6 @@ export default {
     },
 
     showSnackbar (isShown) {
-      debugger
       if (isShown) {
         this.snackbarText = 'Succesful operation 🚀'
       } else {
