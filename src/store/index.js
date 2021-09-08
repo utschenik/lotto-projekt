@@ -10,7 +10,8 @@ const BASE_URL = 'http://localhost:3000/'
 export default new Vuex.Store({
   state: {
     tipp: undefined,
-    usersTipps: undefined
+    usersTipps: undefined,
+    draws: undefined
   },
   getters: {
     GET_TIPP (state) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     GET_USERS_TIPPS (state) {
       return state.usersTipps
+    },
+    GET_DRAWS (state) {
+      return state.draws
     }
   },
   mutations: {
@@ -26,6 +30,9 @@ export default new Vuex.Store({
     },
     SET_USERS_TIPPS (state, payload) {
       state.usersTipps = payload
+    },
+    SET_DRAWS (state, payload) {
+      state.draws = payload
     }
   },
   actions: {
@@ -59,6 +66,29 @@ export default new Vuex.Store({
       const resp = await axios.get(BASE_URL + 'tipps/' + userId)
       if (resp.status === 200) {
         commit('SET_USERS_TIPPS', resp.data)
+        return true
+      } else {
+        return false
+      }
+    },
+    async FETCH_DRAWS ({ commit }) {
+      const resp = await axios.get(BASE_URL + 'ziehungen')
+      if (resp.status === 200) {
+        commit('SET_DRAWS', resp.data)
+        return true
+      } else {
+        return false
+      }
+    },
+    async DRAW_WINNER ({ commit }) {
+      const today = new Date()
+      const reqBody = {
+        date: today.toISOString().split('T')[0]
+      }
+
+      const resp = await axios.post(BASE_URL + 'ziehung', reqBody)
+
+      if (resp.status === 201) {
         return true
       } else {
         return false

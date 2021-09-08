@@ -12,7 +12,17 @@ const routes = [
   {
     path: '/new-tipp',
     name: 'NewTipp',
-    component: () => import(/* webpackChunkName: "dashboard" */ '../views/NewTipp.vue')
+    component: () => import(/* webpackChunkName: "new-tipp" */ '../views/NewTipp.vue')
+  },
+  {
+    path: '/my-tipps',
+    name: 'MyTipps',
+    component: () => import(/* webpackChunkName: "my-tipp" */ '../views/MyTipps.vue')
+  },
+  {
+    path: '/draw-winner',
+    name: 'DrawWinner',
+    component: () => import(/* webpackChunkName: "draw-winner" */ '../views/DrawWinner.vue')
   }
 ]
 

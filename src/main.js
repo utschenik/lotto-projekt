@@ -21,6 +21,8 @@ keycloak.init({ onLoad: initOptions.onLoad }).then((auth) => {
 
     Vue.prototype.$KEYCLOAK = keycloak
     Vue.prototype.$USER_ID = keycloak.tokenParsed.sub
+    Vue.prototype.$LOTTO_MANAGER = keycloak.realmAccess.roles.includes('lotto-manager')
+    Vue.prototype.$LOTTO_PLAYER = keycloak.realmAccess.roles.includes('lotto-player')
 
     new Vue({
       router,

@@ -85,7 +85,7 @@
           "and":[
             {
               "endsWith": {
-                "path": "/tipps/aa6d5869-da46-48ab-b4f2-b91e04c0d4bb"
+                "path": "/tipps/96bf365b-1297-4162-97fc-693d64bbd358"
               }
             },
             {
@@ -116,6 +116,80 @@
             {
               "equals": {
                 "method": "POST"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "responses":[
+        {
+          "is":{
+            "statusCode":201
+          }
+        }
+      ],
+      "predicates":[
+        {
+          "and":[
+            {
+              "endsWith": {
+                "path": "/ziehung"
+              }
+            },
+            {
+              "equals": {
+                "method": "POST"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "responses":[
+        {
+          "is":{
+            "statusCode":200,
+            "body": [
+              {
+                "id": "357a1d43-c05f-4092-b002-9db59f4ef1d2",
+                "number1": 1,
+                "number2": 2,
+                "number3": 3,
+                "number4": 4,
+                "number5": 5,
+                "number6": 6,
+                "superZahl": 3,
+                "date": "2021-07-13"
+              },
+              {
+                "id": "1e5cc67c-306f-4706-859e-8f74efa6a0b7",
+                "number1": 7,
+                "number2": 8,
+                "number3": 9,
+                "number4": 10,
+                "number5": 11,
+                "number6": 12,
+                "superZahl": 4,
+                "date": "2021-07-20"
+              }
+            ]
+          }
+        }
+      ],
+      "predicates":[
+        {
+          "and":[
+            {
+              "endsWith": {
+                "path": "/ziehungen"
+              }
+            },
+            {
+              "equals": {
+                "method": "GET"
               }
             }
           ]
