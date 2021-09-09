@@ -13,22 +13,22 @@
           @emit-number-click="saveNewNumber"
           :numberTipp="name"
           :selected="value"
-          :isDisabled="sendedTipp"
+          :isDisabled="isNumberFieldDisabled"
         ></number-tipp>
         </v-col>
 
         <v-container class="d-flex justify-end">
-          <v-btn color="red" @click="deleteTipp" v-if="!sendedTipp">
+          <v-btn color="red" @click="deleteTipp" v-if="!isNumberFieldDisabled">
             Auswahl löschen
             <v-icon dark right>mdi-delete</v-icon>
           </v-btn>
 
-          <v-btn color="blue" class="ml-4" v-if="!sendedTipp" :disabled=allTipsDone @click="dispatchNewTipp">
+          <v-btn color="blue" class="ml-4" v-if="!isNumberFieldDisabled" :disabled=allTipsDone @click="dispatchNewTipp">
             Akzeptieren
             <v-icon dark right>mdi-check</v-icon>
           </v-btn>
 
-          <v-btn color="blue" class="ml-4" v-if="sendedTipp" @click="startNewTipp">
+          <v-btn color="blue" class="ml-4" v-if="isNumberFieldDisabled" @click="startNewTipp">
             Neuen Tipp machen
             <v-icon dark right>mdi-autorenew</v-icon>
           </v-btn>
@@ -71,6 +71,10 @@ export default {
 
     sendedTipp () {
       return this.$store.getters.GET_TIPP
+    },
+
+    isNumberFieldDisabled () {
+      return this.$store.getters.GET_TIPP ? true : false
     }
   },
 
@@ -115,7 +119,7 @@ export default {
     },
 
     async dispatchNewTipp () {
-      const result = await this.$store.dispatch('NEW_TIPP', { tipp: this.tipp, userId: this.$KEYCLOAK.idTokenParsed.sub })
+      const result = await this.$store.dispatch('NEW_TIPP', { tipp: this.tipp, userID: this.$KEYCLOAK.idTokenParsed.sub })
       this.showSnackbar(result)
       this.deleteTipp()
     },

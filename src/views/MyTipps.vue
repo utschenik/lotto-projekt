@@ -13,8 +13,8 @@
       :width="7"
     ></v-progress-circular>
 
-    <v-container class="flex-column">
-      <user-tipp v-for="tipps of usersTipps" :key="tipps.id" class="mb-4"></user-tipp>
+    <v-container class="d-flex flex-wrap justify-center">
+      <user-tipp v-for="tippIn of usersTipps" :tipp="tippIn" :key="tippIn.id" class="mr-4 mb-4"></user-tipp>
     </v-container>
   </v-container>
 </template>

@@ -35,7 +35,7 @@ export default {
         number4: 'Vierte Zahl',
         number5: 'Fünfte Zahl',
         number6: 'Sechste Zahl',
-        superZahl: 'Super Zahl'
+        superzahl: 'Super Zahl'
       }
 
       return dict[word]

@@ -13,16 +13,16 @@
       :width="7"
     ></v-progress-circular>
 
-    <v-container class="flex-column">
-      <draw-result v-for="drawIn of draws" :key="drawIn.id" class="ma-auto mb-4" :draw=drawIn>
-        {{drawIn.superZahl}}
-      </draw-result>
-    </v-container>
-
-    <v-btn color="blue" v-if="!loading" @click="dispatchDrawWinner" class="mt-4">
+    <v-btn color="blue" v-if="!loading" @click="dispatchDrawWinner" class="mb-8 mt-4">
       Neue Ziehung erstellen
       <v-icon dark right>mdi-check</v-icon>
     </v-btn>
+
+    <v-container class="d-flex flex-wrap justify-center">
+      <draw-result v-for="drawIn of draws" :key="drawIn.id" class="mr-4 mb-4" :draw=drawIn>
+        {{drawIn.superzahl}}
+      </draw-result>
+    </v-container>
   </v-container>
 </template>
 

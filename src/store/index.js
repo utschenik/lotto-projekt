@@ -5,7 +5,8 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const BASE_URL = 'http://localhost:3000/'
+const BASE_URL = 'http://192.168.178.22:3000/'
+// const BASE_URL = 'http://localhost:3000/'
 
 export default new Vuex.Store({
   state: {
@@ -44,7 +45,7 @@ export default new Vuex.Store({
       }
 
       const reqBody = {
-        userID: payload.userId,
+        userID: payload.userID,
         number1: numbers[0],
         number2: numbers[1],
         number3: numbers[2],
@@ -54,6 +55,8 @@ export default new Vuex.Store({
         superZahl: _.random(0, 9)
       }
 
+      console.log(reqBody)
+
       const resp = await axios.post(BASE_URL + 'tipps', reqBody)
       if (resp.status === 201) {
         commit('SET_TIPP', reqBody)
@@ -62,8 +65,9 @@ export default new Vuex.Store({
         return false
       }
     },
-    async FETCH_USERS_TIPPS ({ commit }, userId) {
-      const resp = await axios.get(BASE_URL + 'tipps/' + userId)
+    async FETCH_USERS_TIPPS ({ commit }, userid) {
+      const resp = await axios.get(BASE_URL + 'tipps/' + userid)
+
       if (resp.status === 200) {
         commit('SET_USERS_TIPPS', resp.data)
         return true
@@ -80,15 +84,16 @@ export default new Vuex.Store({
         return false
       }
     },
-    async DRAW_WINNER ({ commit }) {
+    async DRAW_WINNER ({ commit, dispatch }) {
       const today = new Date()
       const reqBody = {
         date: today.toISOString().split('T')[0]
       }
 
-      const resp = await axios.post(BASE_URL + 'ziehung', reqBody)
+      const resp = await axios.post(BASE_URL + 'ziehungen', reqBody)
 
       if (resp.status === 201) {
+        await dispatch('FETCH_DRAWS')
         return true
       } else {
         return false
