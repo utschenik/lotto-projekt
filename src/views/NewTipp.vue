@@ -74,7 +74,7 @@ export default {
     },
 
     isNumberFieldDisabled () {
-      return this.$store.getters.GET_TIPP ? true : false
+      return !!this.$store.getters.GET_TIPP
     }
   },
 
