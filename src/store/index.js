@@ -12,7 +12,8 @@ export default new Vuex.Store({
   state: {
     tipp: undefined,
     usersTipps: undefined,
-    draws: undefined
+    draws: undefined,
+    statistics: undefined
   },
   getters: {
     GET_TIPP (state) {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     GET_DRAWS (state) {
       return state.draws
+    },
+    GET_STATISTICS (state) {
+      return state.statistics
     }
   },
   mutations: {
@@ -34,6 +38,9 @@ export default new Vuex.Store({
     },
     SET_DRAWS (state, payload) {
       state.draws = payload
+    },
+    SET_STATISTICS (state, payload) {
+      state.statistics = payload
     }
   },
   actions: {
@@ -54,8 +61,6 @@ export default new Vuex.Store({
         number6: numbers[5],
         superZahl: _.random(0, 9)
       }
-
-      console.log(reqBody)
 
       const resp = await axios.post(BASE_URL + 'tipps', reqBody)
       if (resp.status === 201) {
@@ -79,6 +84,15 @@ export default new Vuex.Store({
       const resp = await axios.get(BASE_URL + 'ziehungen')
       if (resp.status === 200) {
         commit('SET_DRAWS', resp.data)
+        return true
+      } else {
+        return false
+      }
+    },
+    async FETCH_STATISTICS ({ commit }) {
+      const resp = await axios.get(BASE_URL + 'statistik')
+      if (resp.status === 200) {
+        commit('SET_STATISTICS', resp.data)
         return true
       } else {
         return false
