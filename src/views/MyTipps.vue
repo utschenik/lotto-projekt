@@ -25,6 +25,12 @@ import UserTipp from '../components/UserTipp.vue'
 export default {
   name: 'MyTipps',
 
+  beforeMount () {
+    if (!this.$LOTTO_PLAYER) {
+      this.$router.push({ path: '/not-authorized' })
+    }
+  },
+
   components: {
     UserTipp
   },

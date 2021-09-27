@@ -1,11 +1,11 @@
 <template>
   <v-app>
 
-    <v-app-bar app  color="yellow lighten-2">
+    <v-app-bar app color="yellow lighten-2">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>
-        <router-link to="/" style="text-decoration: none; color: inherit;">Lotto-Projekt</router-link>
+        <router-link to="/" style="text-decoration: none; color: inherit;">Lotto-Projekt Schulz & Schüler</router-link>
       </v-toolbar-title>
 
       <v-btn @click="logout" class="ml-auto">
@@ -26,8 +26,11 @@
     </v-main>
 
     <v-footer color="yellow lighten-2">
-      <v-col cols="12" class="text-right">
-        <span class="font-weight-thin">Schulz & Schüler Projects</span>
+      <v-col
+        class="text-right"
+        cols="12"
+      >
+        <span class="font-weight-thin">Hallo, {{ $USERNAME }}</span>
       </v-col>
     </v-footer>
   </v-app>

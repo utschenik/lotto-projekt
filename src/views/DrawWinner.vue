@@ -31,6 +31,12 @@ import DrawResult from '../components/DrawResult.vue'
 export default {
   name: 'DrawWinner',
 
+  beforeMount () {
+    if (!this.$LOTTO_MANAGER) {
+      this.$router.push({ path: '/not-authorized' })
+    }
+  },
+
   components: {
     DrawResult
   },

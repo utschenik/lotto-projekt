@@ -10,6 +10,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue')
   },
   {
+    path: '/not-authorized',
+    name: 'Unauthorized',
+    component: () => import('../views/403.vue')
+  },
+  {
     path: '/new-tipp',
     name: 'NewTipp',
     component: () => import(/* webpackChunkName: "new-tipp" */ '../views/NewTipp.vue')

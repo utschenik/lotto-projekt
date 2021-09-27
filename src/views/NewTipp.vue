@@ -61,6 +61,12 @@
 import NumberTipp from '../components/NumberTipp.vue'
 
 export default {
+  beforeMount () {
+    if (!this.$LOTTO_PLAYER) {
+      this.$router.push({ path: '/not-authorized' })
+    }
+  },
+
   components: { NumberTipp },
   name: 'NewTipp',
 
