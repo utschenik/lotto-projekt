@@ -13,8 +13,8 @@
       :width="7"
     ></v-progress-circular>
 
-    <v-container class="d-flex flex-wrap justify-center">
-      <user-tipp v-for="tippIn of usersTipps" :tipp="tippIn" :key="tippIn.id" class="mr-4 mb-4"></user-tipp>
+    <v-container class="d-flex flex-wrap justify-center" v-if="!loading">
+      <user-tipp v-for="tippIn of usersTipps" :tipp="tippIn" :drawsFromUser="drawsWhereUserParticipated" :key="tippIn.id" class="mr-4 mb-4"></user-tipp>
     </v-container>
   </v-container>
 </template>
@@ -38,6 +38,21 @@ export default {
   computed: {
     usersTipps () {
       return this.$store.getters.GET_USERS_TIPPS
+    },
+    draws () {
+      return this.$store.getters.GET_DRAWS
+    },
+    drawsWhereUserParticipated () {
+      const drawsFromUser = []
+      for (const tippIn of this.usersTipps) {
+        for (const drawIn of this.draws) {
+          if (tippIn.ziehungid === drawIn.id) {
+            drawsFromUser.push(drawIn)
+          }
+        }
+      }
+
+      return drawsFromUser
     }
   },
 
@@ -58,7 +73,8 @@ export default {
 
   methods: {
     async fetchUsersTipps () {
-      const result = await this.$store.dispatch('FETCH_USERS_TIPPS', this.$USER_ID)
+      let result = await this.$store.dispatch('FETCH_USERS_TIPPS', this.$USER_ID)
+      result = await this.$store.dispatch('FETCH_DRAWS')
       this.loading = false
       this.showSnackbar(result)
     },
