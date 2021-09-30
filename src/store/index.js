@@ -5,8 +5,8 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-// const BASE_URL = 'http://192.168.178.22:3000/'
-const BASE_URL = 'http://localhost:3000/'
+const BASE_URL = 'http://192.168.178.23:3000/'
+// const BASE_URL = 'http://localhost:3000/'
 
 export default new Vuex.Store({
   state: {
@@ -91,7 +91,8 @@ export default new Vuex.Store({
     },
     async FETCH_STATISTICS ({ commit }) {
       const resp = await axios.get(BASE_URL + 'statistik')
-      if (resp.status === 200) {
+      console.log(resp)
+      if (resp.status === 201) {
         commit('SET_STATISTICS', resp.data)
         return true
       } else {
